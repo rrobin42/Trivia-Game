@@ -1,7 +1,7 @@
 //QUESTIONS
 var q1 = {
   question: "Pick one",
-  a1: "<p>a</p>",
+  a1: "<button id='a'>a</button>",
   a2: "<p>b</p>",
   a3: "<p>c</p>",
   a4: "<p>d</p>"
@@ -23,7 +23,7 @@ var q3 = {
 //QUESTION OBJECTS PLACED IN ARRAY
 var questions = [q1, q2, q3];
 
-var number = 4; //COUNTDOWN TIMER FOR QUESTION SCREEN
+var number = 100; //COUNTDOWN TIMER FOR QUESTION SCREEN
 var number2 = 8; //COUNTDOWN TIMER FOR ANSWER SCREEN
 var intervalId;
 var i = 0; //QUESTION ITERATOR
@@ -39,6 +39,13 @@ function question() {
   $("#timeRemaining").css("display", "inline");
   $("#question").html(questions[i].question);
   $("#answers").html(questions[i].a1 + questions[i].a2 + questions[i].a3 + questions[i].a4);
+
+
+  //ANSWER ONCLICK FUNCTIONS
+  $("#a").click(function () {
+    answerScreen(1);
+  });
+
 
 }
 
@@ -56,16 +63,30 @@ function decrement() {
 
     //RESET TIMER
     number = 4;
-    answerScreen();
+    answerScreen(3);
   }
 }
 
 //FUNCTION FOR ANSWER SCREEN
-function answerScreen() {
-  $("#timeRemaining").css("display", "none");
-  $("#question").html("Times up!");
-  $("#answers").html("the answer was " + questions[i].a2);
-  intervalId = setInterval(decrement2, 1000);
+function answerScreen(n) {
+  //IF THE ANSWER IS CORRECT
+  if (n === 1) {
+    $("#question").html("GOOD JOB!")
+    $("#answers").html("");
+  }
+
+  //IF THE ANSWER IS WRONG
+  else if (n === 2) {
+
+  }
+  //IF TIME RAN OUT
+  else if (n === 3) {
+    $("#timeRemaining").css("display", "none");
+    $("#question").html("Times up!");
+    $("#answers").html("the answer was " + questions[i].a2);
+    intervalId = setInterval(decrement2, 1000);
+    n = 0;
+  }
 }
 
 //DECREMENT FUNCTION FOR ANSWER SCREEN
@@ -86,3 +107,4 @@ function decrement2() {
     }
   }
 }
+
