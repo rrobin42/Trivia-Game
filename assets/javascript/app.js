@@ -1,7 +1,7 @@
 //QUESTIONS
 var q1 = {
   question: "Pick one",
-  a1: "<button id='a'>a</button>",
+  a1: "<p id='a'>a</p>",
   a2: "<p>b</p>",
   a3: "<p>c</p>",
   a4: "<p>d</p>"
@@ -23,8 +23,8 @@ var q3 = {
 //QUESTION OBJECTS PLACED IN ARRAY
 var questions = [q1, q2, q3];
 
-var number = 100; //COUNTDOWN TIMER FOR QUESTION SCREEN
-var number2 = 8; //COUNTDOWN TIMER FOR ANSWER SCREEN
+var number = 5; //COUNTDOWN TIMER FOR QUESTION SCREEN
+var number2 = 3; //COUNTDOWN TIMER FOR ANSWER SCREEN
 var intervalId;
 var i = 0; //QUESTION ITERATOR
 
@@ -43,6 +43,8 @@ function question() {
 
   //ANSWER ONCLICK FUNCTIONS
   $("#a").click(function () {
+    clearInterval(intervalId);
+    number = 5;
     answerScreen(1);
   });
 
@@ -62,7 +64,7 @@ function decrement() {
     clearInterval(intervalId);
 
     //RESET TIMER
-    number = 4;
+    number = 5;
     answerScreen(3);
   }
 }
@@ -73,14 +75,16 @@ function answerScreen(n) {
   if (n === 1) {
     $("#question").html("GOOD JOB!")
     $("#answers").html("");
+    intervalId = setInterval(decrement2, 1000);
+    n = 0;
   }
 
   //IF THE ANSWER IS WRONG
-  else if (n === 2) {
+  if (n === 2) {
 
   }
   //IF TIME RAN OUT
-  else if (n === 3) {
+  if (n === 3) {
     $("#timeRemaining").css("display", "none");
     $("#question").html("Times up!");
     $("#answers").html("the answer was " + questions[i].a2);
@@ -95,10 +99,11 @@ function decrement2() {
   //  Decrease number by one.
   number2--;
 
+  $("#timeRemaining").html("Time remaining: <h2>" + number2 + "</h2>");
   //  Once number hits zero...
   if (number2 === 0) {
     clearInterval(intervalId);
-    number2 = 8;
+    number2 = 3;
     i++;
     if (i < questions.length)
       question();
