@@ -36,11 +36,10 @@ function question() {
   $("#timeRemaining").html("Time remaining: <h2>" + number + "</h2>");
   $("#question").html(questions[i].question);
 
-  var displayQuestions = [questions[i].ca, questions[i].wa[0], questions[i].wa[1], questions[i].wa[2]].join("");
+  var displayAnswers = [questions[i].ca, questions[i].wa[0], questions[i].wa[1], questions[i].wa[2]];
 
-  shuffle(displayQuestions);
-
-  $("#answers").html(displayQuestions.toString());
+  shuffle(displayAnswers);
+  $("#answers").html(displayAnswers.join(""));
 
 
   //ANSWER ONCLICK FUNCTIONS
