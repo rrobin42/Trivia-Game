@@ -1,0 +1,27 @@
+body{
+  background-image: url(../images/background.jpg);
+  background-size:100%;
+  text-align: center;
+  color: white;
+}
+.container{
+  height: 600px;
+  width: 800px;
+  background-color: black;
+  position: absolute;
+  left: 30px;
+  top: 0px;
+  text-align: center;
+}
+.answerBox{
+  width: 500px;
+  height: 75px;
+  background-color: red;
+display: inline-block;
+}
+.answerBox:hover{
+  width: 500px;
+  height: 75px;
+  background-color: blue;
+display: inline-block;
+}
